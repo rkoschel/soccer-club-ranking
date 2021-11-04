@@ -1,21 +1,52 @@
-import time
+import time, json
 from threading import Thread
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-soccerRankingTable = 'bla-'
+soccerRankingTable = {
+    "league1" : [
+        {
+            "club" : "FCB",
+            "ranking" : "1"
+        },
+        {
+            "club" : "BVB",
+            "ranking" : "6"
+        }
+    ],
+    "league2" : [
+        {
+            "club" : "S04",
+            "ranking" : "3"
+        },
+        {
+            "club" : "Bielefeld",
+            "ranking" : "8"
+        }
+    ]
+}
 
 
-@app.get("/hello")
-def get_countries():
-    return soccerRankingTable
+@app.get("/ranking/<club>")
+def getRankgingForClub(club=None):
+    ranking='0'
+    for clubRanking in soccerRankingTable['league1']:
+        if(clubRanking['club'] == club):
+            ranking = clubRanking['ranking']
+            break
+
+    for clubRanking in soccerRankingTable['league2']:
+        if(clubRanking['club'] == club):
+            ranking = clubRanking['ranking']
+            break
+
+    return ranking
 
 
-def loadSoccerRankingTable(name):
+def loadSoccerRankingTable():
     global soccerRankingTable
     while True:
-        print(f"Thread {name}: starting")
         soccerRankingTable = soccerRankingTable + soccerRankingTable
         time.sleep(5)
 
