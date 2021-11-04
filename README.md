@@ -5,5 +5,4 @@ Microservice to provide the ranking of German soccer clubs
 `pip install flask`
 
 ## run
-`export FLASK_APP=scr.py`
-`flask run`
+`python3 scr.py`
