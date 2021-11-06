@@ -2,7 +2,8 @@
 Microservice to provide the ranking of German soccer clubs
 
 ## install
-`pip install flask`
+pip install flask
+pip install beautifulsoup4
 
 ## run
-`python3 scr.py`
+python scr.py
