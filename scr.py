@@ -10,6 +10,8 @@ app = Flask(__name__)
 urlBL1 = 'https://www.bundesliga.com/de/bundesliga/tabelle'
 urlBL2 = 'https://www.bundesliga.com/de/2bundesliga/tabelle'
 
+appInfo = {"info":[]}
+
 ## TODO save the initial club list in a settings.json
 soccerRankingTable = {"clubs":[
         {
@@ -25,6 +27,10 @@ soccerRankingTable = {"clubs":[
             "club_short" : "S04",
         }
 ]}
+
+@app.get("/info")
+def getInformation():
+    return appInfo
 
 @app.get("/clubs")
 def getAvailableSoccerClubs():
@@ -78,10 +84,15 @@ def loadSoccerRankingTable(url):
                 curClubShort = htmlCol.findChildren('a')[0].findChildren('span')[0].text
 
         saveCurrentRanking(curClubShort, curClubLong, curRank)
+    print(appInfo)
 
 
 def saveCurrentRanking(clubShort, clubLong, rank):
+    global appInfo
     #print(f'{rank} # {clubLong} ({clubShort})')
+    appInfo['info'].append("{ 'rank' : '" + rank + "', " + 
+                            "'club_long' : '" + clubLong + "', " + 
+                            "'club_short' : '" + clubShort + "'}")
     for clubRanking in soccerRankingTable['clubs']:
         if(clubRanking['club_short'] == clubShort):
             clubRanking['club_long'] = clubLong
