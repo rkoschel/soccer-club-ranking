@@ -84,7 +84,6 @@ def loadSoccerRankingTable(url):
                 curClubShort = htmlCol.findChildren('a')[0].findChildren('span')[0].text
 
         saveCurrentRanking(curClubShort, curClubLong, curRank)
-    print(appInfo)
 
 
 def saveCurrentRanking(clubShort, clubLong, rank):
