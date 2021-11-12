@@ -36,7 +36,6 @@ def getInformation():
 def getAvailableSoccerClubs():
     allClubs = {'clubs':[]}
     for soccerClub in soccerRankingTable['clubs']:
-        del soccerClub['rank']
         allClubs['clubs'].append(soccerClub)
     return json.dumps(allClubs)
 
