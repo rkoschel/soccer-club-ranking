@@ -1,0 +1,11 @@
+[Unit]
+Description=Socker club ranking service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/soccer-club-ranking/scr.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
