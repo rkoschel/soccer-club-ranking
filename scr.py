@@ -98,7 +98,7 @@ def saveCurrentRanking(clubShort, clubLong, rank):
 
 
 if __name__ == '__main__':
-    delayForRankingLoopingInMinutes = 180
+    delayForRankingLoopingInMinutes = 120
     readSoccerTableThread = Thread(target=loopForRankingLoader, args=(delayForRankingLoopingInMinutes,))
     readSoccerTableThread.start()
 
