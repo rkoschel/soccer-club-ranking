@@ -28,11 +28,11 @@ soccerRankingTable = {"clubs":[
         }
 ]}
 
-@app.get("/info")
+@app.route("/info")
 def getInformation():
     return appInfo
 
-@app.get("/clubs")
+@app.route("/clubs")
 def getAvailableSoccerClubs():
     allClubs = {'clubs':[]}
     for soccerClub in soccerRankingTable['clubs']:
@@ -40,7 +40,7 @@ def getAvailableSoccerClubs():
     return json.dumps(allClubs)
 
 
-@app.get("/ranking/<clubShort>")
+@app.route("/ranking/<clubShort>")
 def getRankgingForClub(clubShort=None):
     ranking='0'
     try: 
