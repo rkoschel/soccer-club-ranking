@@ -59,7 +59,9 @@ def loopForRankingLoader(delay):
             loadSoccerRankingTable(urlBL1)
             loadSoccerRankingTable(urlBL2)
         except:
+            print(f'error while reading ranking from {urlBL1} or {urlBL2}')
             pass
+
         print(f'waiting for {delay} minutes before reading the rankings again')
         time.sleep(60 * delay)
 
@@ -79,8 +81,8 @@ def loadSoccerRankingTable(url):
             if(htmlCol.get('class')[0] == 'rank'):
                 curRank = htmlCol.text
             if(htmlCol.get('class')[0] == 'team'):
-                curClubLong = htmlCol.findChildren('a')[0].get('title')
-                curClubShort = htmlCol.findChildren('a')[0].findChildren('span')[0].text
+                curClubLong = htmlCol.findChildren('div')[0].get('title')
+                curClubShort = htmlCol.findChildren('div')[0].findChildren('span')[0].text
 
         saveCurrentRanking(curClubShort, curClubLong, curRank)
 
